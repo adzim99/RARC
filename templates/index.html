@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'status.html' %}
+
+<style>
+    .appl{text-decoration: none;}
+    h5 {text-align: center;}
+</style>
+
+<br>
+{% if request.user.office %}
+    <div class="row">
+        <div class="col-md-5">
+            <h5>Users</h5>
+            <hr>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Applicant</th>
+                        <th>Supervisor</th>
+                    </tr>
+                    {% for applicant in applicant %}
+                        <tr>
+                            <td><a href="{% url 'applicant' applicant.id %}">{{ applicant.applicant_name }}</a></td>
+                            <td>{{ applicant.supervisor }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md">
+            <h5>Laboratory Forms</h5>
+            <hr>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Lab Code</th>
+                        <th>Activity</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    {% for booking in booking %}
+                        <tr>
+                            <td>{{booking.laboratory_code}}</td>
+                            <td>{{booking.HI_work_activity}}</td>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'edit_booking' booking.id %}">Edit</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="{% url 'delete_booking' booking.id %}">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="row">
+        <div class="col-md-5">
+            <h5>Users</h5>
+            <hr>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Applicant</th>
+                        <th>Supervisor</th>
+                    </tr>
+                    {% for applicant in applicant %}
+                        <tr>
+                            <td><a class="appl" href="{% url 'applicant' applicant.id %}">{{ applicant.applicant_name }}</a></td>
+                            <td>{{ applicant.supervisor }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md">
+            <h5>Submitted Forms</h5>
+            <hr>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Lab Code</th>
+                        <th>Activity</th>
+                    </tr>
+                    {% for booking in booking %}
+                        <tr>
+                            <td>{{booking.laboratory_code}}</td>
+                            <td>{{booking.HI_work_activity}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}

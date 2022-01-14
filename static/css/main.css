@@ -1,0 +1,15 @@
+#logo{
+}
+
+    body{
+        background-color: #ebeff5;
+    }
+    #total-forms{
+        background-color: #4cb4c7;
+    }
+    #submitted-forms{
+        background-color: #7abecc;
+    }
+    #pending-forms{
+        background-color: #7cd1c0;
+    }
