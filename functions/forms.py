@@ -22,7 +22,7 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-class FeedbackForm(forms.ModelForm):
+class ApplicantFeedbackForm(forms.ModelForm):
     class Meta:
-        model = Feedback
+        model = ApplicantFeedback
         fields = '__all__'

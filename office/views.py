@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.decorators import login_required
-from functions.models import Applicant, Booking, Feedback
+from functions.models import Applicant, Booking
 from .models import *
 from .forms import *
 from .filters import *
@@ -149,9 +149,9 @@ def deleteBooking(request, pk):
     return render(request, 'delete.html', context)
 
 @login_required(login_url='office_login')
-def feedback(request):
+def officeFeedback(request):
     if request.method == 'POST':
-        comment = FeedbackForm(request.POST)
+        comment = OfficeFeedbackForm(request.POST)
         if comment.is_valid():
             try:
                 comment.save()
@@ -159,5 +159,5 @@ def feedback(request):
             except:
                 pass
     else:
-        comment = FeedbackForm()
-    return render(request, 'feedback.html', {'comment':comment})
+        comment = OfficeFeedbackForm()
+    return render(request, 'office_feedback.html', {'comment':comment})

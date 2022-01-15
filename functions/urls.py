@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout/', views.logoutUser, name="logout"),
 
     path('', views.home, name="home"),
+    path('user/', views.userPage, name="user"),
     path('applicant/<str:pk>/', views.applicant, name="applicant"),
 
     path('applicant_account/', views.applicantAccount, name="applicant_account"),
@@ -24,5 +25,5 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="password_reset_form.html"), name="password_reset_confirm"),
     path('password_reset_done/', auth_views.PasswordResetCompleteView.as_view(template_name="password_reset_done.html"), name="password_reset_complete"),
     
-    path('feedback/', views.feedback, name="feedback"),
+    path('applicant_feedback/', views.applicantFeedback, name="applicant_feedback"),
 ]

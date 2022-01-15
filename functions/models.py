@@ -63,7 +63,7 @@ class Booking(models.Model):
     def __str__(self):
         return str(self.HI_work_activity)
 
-class Feedback(models.Model):
+class ApplicantFeedback(models.Model):
     RATE = (
         (1, '1'),
         (2, '2'),

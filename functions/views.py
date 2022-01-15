@@ -58,19 +58,37 @@ def logoutUser(request):
     return redirect('applicant_login')
 
 @login_required(login_url='applicant_login')
+@rbac_applicant(allowed_roles=['office'])
 def home(request):
     applicant = Applicant.objects.all()
     booking = Booking.objects.all()
-
-#    total_applicant = applicant.count()
 
     total_booking = booking.count()
     approved = booking.filter(booking_status='Approved').count()
     pending = booking.filter(booking_status='Pending').count()
 
-    context = {'applicant':applicant, 'booking':booking, 'total_booking':total_booking, 'approved':approved, 'pending':pending}
+    myFilter = BookingFilter(request.GET, queryset=booking)
+    booking = myFilter.qs
+
+    context = {'applicant':applicant, 'booking':booking, 'total_booking':total_booking, 'approved':approved, 'pending':pending, 'myFilter':myFilter}
 
     return render(request, 'index.html', context)
+
+@login_required(login_url='applicant_login')
+def userPage(request):
+    applicant = request.user.applicant
+    booking = request.user.applicant.booking_set.all()
+
+    total_booking = booking.count()
+    approved = booking.filter(booking_status='Approved').count()
+    pending = booking.filter(booking_status='Pending').count()
+
+    myFilter = BookingFilter(request.GET, queryset=booking)
+    booking = myFilter.qs
+
+    context = {'applicant':applicant, 'booking':booking, 'total_booking':total_booking, 'approved':approved, 'pending':pending, 'myFilter':myFilter}
+
+    return render(request, 'user.html', context)
 
 @login_required(login_url='applicant_login')
 def applicant(request, pk):
@@ -89,7 +107,7 @@ def applicant(request, pk):
     return render(request, 'applicant.html', context)
 
 @login_required(login_url='applicant_login')
-@allowed_users(allowed_roles=['applicant'])
+@rbac_office(allowed_roles=['applicant'])
 def applicantAccount(request):
     applicant = request.user.applicant
     form = ApplicantForm(instance=applicant)
@@ -146,12 +164,12 @@ def deleteBooking(request, pk):
 
     context = {'booking':booking}
 
-    return render(request, 'delete.html', context)
+    return render(request, 'reject.html', context)
 
 @login_required(login_url='applicant_login')
-def feedback(request):
+def applicantFeedback(request):
     if request.method == 'POST':
-        comment = FeedbackForm(request.POST)
+        comment = ApplicantFeedbackForm(request.POST)
         if comment.is_valid():
             try:
                 comment.save()
@@ -159,5 +177,5 @@ def feedback(request):
             except:
                 pass
     else:
-        comment = FeedbackForm()
-    return render(request, 'feedback.html', {'comment':comment})
+        comment = ApplicantFeedbackForm()
+    return render(request, 'applicant_feedback.html', {'comment':comment})

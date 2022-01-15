@@ -5,13 +5,13 @@ from django.contrib.auth.models import User
 from django import forms
 
 from .models import *
-from functions.models import Booking, Feedback
+from functions.models import Booking
 
 class OfficeForm(ModelForm):
     class Meta:
         model = Office
         fields = '__all__'
-        exclude = ['user', 'booking']
+        exclude = ['user']
 
 class BookingForm(ModelForm):
     class Meta:
@@ -23,7 +23,7 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-class FeedbackForm(forms.ModelForm):
+class OfficeFeedbackForm(forms.ModelForm):
     class Meta:
-        model = Feedback
+        model = OfficeFeedback
         fields = '__all__'
