@@ -58,7 +58,7 @@ def logoutUser(request):
     return redirect('applicant_login')
 
 @login_required(login_url='applicant_login')
-@rbac_applicant(allowed_roles=['office'])
+@rbac_office(allowed_roles=['office'])
 def home(request):
     applicant = Applicant.objects.all()
     booking = Booking.objects.all()
@@ -75,6 +75,7 @@ def home(request):
     return render(request, 'index.html', context)
 
 @login_required(login_url='applicant_login')
+@rbac_applicant(allowed_roles=['applicant'])
 def userPage(request):
     applicant = request.user.applicant
     booking = request.user.applicant.booking_set.all()
@@ -91,6 +92,7 @@ def userPage(request):
     return render(request, 'user.html', context)
 
 @login_required(login_url='applicant_login')
+@rbac_office(allowed_roles=['office'])
 def applicant(request, pk):
     applicant = Applicant.objects.get(id=pk)
     booking = applicant.booking_set.all()
@@ -107,7 +109,7 @@ def applicant(request, pk):
     return render(request, 'applicant.html', context)
 
 @login_required(login_url='applicant_login')
-@rbac_office(allowed_roles=['applicant'])
+@rbac_applicant(allowed_roles=['applicant'])
 def applicantAccount(request):
     applicant = request.user.applicant
     form = ApplicantForm(instance=applicant)
@@ -140,7 +142,8 @@ def booking(request, pk):
     return render(request, 'booking.html', context)
 
 @login_required(login_url='applicant_login')
-def editBooking(request, pk):
+@rbac_office(allowed_roles=['office'])
+def approveBooking(request, pk):
     booking = Booking.objects.get(id=pk)
     bookingset = BookingForm(instance=booking)
 
@@ -155,7 +158,8 @@ def editBooking(request, pk):
     return render(request, 'booking.html', context)
 
 @login_required(login_url='applicant_login')
-def deleteBooking(request, pk):
+@rbac_office(allowed_roles=['office'])
+def rejectBooking(request, pk):
     booking = Booking.objects.get(id=pk)
 
     if request.method == "POST":
@@ -167,6 +171,7 @@ def deleteBooking(request, pk):
     return render(request, 'reject.html', context)
 
 @login_required(login_url='applicant_login')
+@rbac_applicant(allowed_roles=['applicant'])
 def applicantFeedback(request):
     if request.method == 'POST':
         comment = ApplicantFeedbackForm(request.POST)

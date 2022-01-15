@@ -58,11 +58,10 @@ def logoutUser(request):
     return redirect('office_login')
 
 @login_required(login_url='office_login')
+@allowed_users(allowed_roles=['office'])
 def home(request):
     applicant = Applicant.objects.all()
     booking = Booking.objects.all()
-
-#    total_applicant = applicant.count()
 
     total_booking = booking.count()
     approved = booking.filter(booking_status='Approved').count()
@@ -73,6 +72,7 @@ def home(request):
     return render(request, 'index.html', context)
 
 @login_required(login_url='office_login')
+@allowed_users(allowed_roles=['office'])
 def applicant(request, pk):
     applicant = Applicant.objects.get(id=pk)
     booking = applicant.booking_set.all()
@@ -88,7 +88,7 @@ def applicant(request, pk):
 
     return render(request, 'applicant.html', context)
 
-@login_required(login_url='applicant_login')
+@login_required(login_url='office_login')
 @allowed_users(allowed_roles=['office'])
 def officeAccount(request):
     office = request.user.office
@@ -122,7 +122,8 @@ def booking(request, pk):
     return render(request, 'booking.html', context)
 
 @login_required(login_url='office_login')
-def editBooking(request, pk):
+@allowed_users(allowed_roles=['office'])
+def approveBooking(request, pk):
     booking = Booking.objects.get(id=pk)
     bookingset = BookingForm(instance=booking)
 
@@ -137,7 +138,8 @@ def editBooking(request, pk):
     return render(request, 'booking.html', context)
 
 @login_required(login_url='office_login')
-def deleteBooking(request, pk):
+@allowed_users(allowed_roles=['office'])
+def rejectBooking(request, pk):
     booking = Booking.objects.get(id=pk)
 
     if request.method == "POST":
@@ -146,9 +148,10 @@ def deleteBooking(request, pk):
 
     context = {'booking':booking}
 
-    return render(request, 'delete.html', context)
+    return render(request, 'reject.html', context)
 
 @login_required(login_url='office_login')
+@allowed_users(allowed_roles=['office'])
 def officeFeedback(request):
     if request.method == 'POST':
         comment = OfficeFeedbackForm(request.POST)

@@ -17,7 +17,7 @@ def rbac_applicant(allowed_roles=[]):
 			if group in allowed_roles:
 				return view_func(request, *args, **kwargs)
 			else:
-				return redirect ('user')
+				return redirect ('home')
 		return wrapper_func
 	return decorator
 
@@ -30,6 +30,6 @@ def rbac_office(allowed_roles=[]):
 			if group in allowed_roles:
 				return view_func(request, *args, **kwargs)
 			else:
-				return redirect ('home')
+				return redirect ('user')
 		return wrapper_func
 	return decorator

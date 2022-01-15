@@ -9,7 +9,7 @@
     <div class="col-md-6">
         <div class="card card-body">
             <p>Are you sure you want to reject "{{booking}}"?</p>
-            <form action="{% url 'delete_booking' booking.id %}" method="POST">
+            <form action="{% url 'reject_booking' booking.id %}" method="POST">
                 {% csrf_token %}
                 <a class="btn btn-warning" href="{% url 'home' %}">Cancel</a>
                 <input class="btn btn-danger" type="submit" name="Confirm">
