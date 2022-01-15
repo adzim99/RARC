@@ -40,10 +40,7 @@
         </div>
     {% endif %}
 </div>
-
-
 <hr>
-
 <div class="row">
     <div class="col">
         <div class="card card-body">
@@ -54,9 +51,7 @@
         </div>
     </div>
 </div>
-
 <hr>
-
 <div class="row">
     <div class="col-md">
         <div class="card card-body">
@@ -76,10 +71,10 @@
                     <th>PIC (Due date/status)</th>
 
                     {% if request.user.office %}
-                    <th>Edit</th>
+                    <th>Approve</th>
                     {% endif %}
 
-                    <th>Delete</th>
+                    <th>Reject</th>
                 </tr>
                 {% for booking in booking %}
                 <tr>
@@ -97,10 +92,10 @@
                     <td>{{booking.RC_PIC}}</td>
 
                     {% if request.user.office %}
-                        <td><a class="btn btn-sm btn-info" href="{% url 'edit_booking' booking.id %}">Edit</a></td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'edit_booking' booking.id %}">Approve</a></td>
                     {% endif %}
                     
-                    <td><a class="btn btn-sm btn-danger" href="{% url 'delete_booking' booking.id %}">Delete</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="{% url 'delete_booking' booking.id %}">Rejct</a></td>
                 </tr>
                 {% endfor %}
             </table>
