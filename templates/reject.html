@@ -5,16 +5,17 @@
 {% block content %}
 
 <br>
-<div class="row">
-    <div class="col-md-6">
-        <div class="card card-body">
-            <p>Are you sure you want to reject "{{booking}}"?</p>
-            <form action="{% url 'reject_booking' booking.id %}" method="POST">
-                {% csrf_token %}
-                <a class="btn btn-warning" href="{% url 'home' %}">Cancel</a>
-                <input class="btn btn-danger" type="submit" name="Confirm">
-            </form>
-        </div>
+<div class="col-md" style="text-align:center">
+    <div class="card card-body">
+        <h5>Are you sure you want to reject "{{booking}}"?</h5>
+        <br>
+        <p>*This action will remove the form from the list. Are you sure?</p>
+        <form action="{% url 'reject_booking' booking.id %}" method="POST">
+            {% csrf_token %}
+            <hr>
+            <a class="btn btn-warning" href="{% url 'home' %}">Cancel</a>
+            <input class="btn btn-outline-secondary" type="submit" name="Confirm">
+        </form>
     </div>
 </div>
 

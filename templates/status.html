@@ -1,42 +1,67 @@
-<br>
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        #logo{
 
-<div class="row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="total-forms">
-                <div class="card-header">
-                    <h5 class="card-title">Total Forms</h5>
+        }
+        body{
+            background-color: #ebeff5;
+        }
+        #total-forms{
+            background-color: #4cb4c7;
+        }
+        #submitted-forms{
+            background-color: #7abecc;
+        }
+        #pending-forms{
+            background-color: #7cd1c0;
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br>
+    <div class="row">
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-white mb-3" id="total-forms">
+                    <div class="card-header">
+                        <h5 class="card-title">Total Forms</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{total_booking}}</h3>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h3 class="card-title">{{total_booking}}</h3>
+            </div>
+        </div>
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-white mb-3" id="submitted-forms">
+                    <div class="card-header">
+                        <h5 class="card-title">Approved</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{approved}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-white mb-3" id="pending-forms">
+                    <div class="card-header">
+                        <h5 class="card-title">Pending</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{pending}}</h3>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="submitted-forms">
-                <div class="card-header">
-                    <h5 class="card-title">Approved</h5>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">{{approved}}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="pending-forms">
-                <div class="card-header">
-                    <h5 class="card-title">Pending</h5>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">{{pending}}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+</body>
+</html>

@@ -1,20 +1,17 @@
 {% extends 'index.html' %}
-
+{% load crispy_forms_tags %}
 {% load static %}
-
 {% block content %}
 
 <br>
-<div class="row">
-    <div class="col-md-6">
-        <div class="card card-body">
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ comment }}
-                <hr>
-                <input type="submit" name="Submit">
-            </form>
-        </div>
+<div class="col-md" style="text-align:center">
+    <div class="card card-body">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ comment|crispy }}
+            <hr>
+            <input type="submit" name="Submit" class="btn btn-success">
+        </form>
     </div>
 </div>
 

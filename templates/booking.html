@@ -6,21 +6,15 @@
 {% block content %}
 
 <br>
-<div class="row">
-    <div class="col-md-6">
-        <div class="card card-body">
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ bookingset.management_form }}
-                {{ bookingset|crispy }}
-                <!--
-                {% for form in bookingset %}
-                {% endfor %}
-                -->
-                <hr>
-                <input type="submit" name="Submit">
-            </form>
-        </div>
+<div class="col-md" style="text-align:center">
+    <div class="card card-body">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ bookingset.management_form }}
+            {{ bookingset|crispy }}
+            <hr>
+            <input type="submit" name="Submit" class="btn btn-outline-success">
+        </form>
     </div>
 </div>
 

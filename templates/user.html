@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+{% load crispy_forms_tags %}
 {% include 'status.html' %}
 
 <style>
@@ -10,103 +10,105 @@
 </style>
 
 <hr>
-<div class="row">
-    <div class="col-md">
-        <div class="card card-body">
-            <h5>Applicant</h5>
-            <hr>
-            <table class="table table-sm">
-                <tr>
-                    <th>Applicant Name</th>
-                    <th>Matric No.</th>
-                    <th>Student's Tel. No.</th>
-                    <th>Supervisor</th>
-                    <th>Programme/Faculty</th>
-                </tr>
-                <tr>
-                    <td>{{applicant.applicant_name}}</td>
-                    <td>{{applicant.matric_no}}</td>
-                    <td>{{applicant.student_tel_no}}</td>
-                    <td>{{applicant.supervisor}}</td>
-                    <td>{{applicant.programme}}</td>
-                </tr>
-            </table>
-        </div>
+<div class="col-md" style="text-align:center">
+    <div class="card card-body">
+        <h5>Applicant</h5>
+        <hr>
+        <table class="table table-sm">
+            <tr>
+                <th>Applicant Name</th>
+                <th>Matric No.</th>
+                <th>Student's Tel. No.</th>
+                <th>Supervisor</th>
+                <th>Programme/Faculty</th>
+            </tr>
+            <tr>
+                <td>{{applicant.applicant_name}}</td>
+                <td>{{applicant.matric_no}}</td>
+                <td>{{applicant.student_tel_no}}</td>
+                <td>{{applicant.supervisor}}</td>
+                <td>{{applicant.programme}}</td>
+            </tr>
+        </table>
     </div>
+</div>
+<hr>
+<div class="row" style="text-align:center">
     {% if request.user.is_authenticated %}
-        <div class="col-md-3">
+        <div class="col-md">
             <div class="card card-body">
                 <h5>Action</h5>
                 <hr>
+                <br><br>
                 <a class="btn btn-outline-warning btn-sm btn-block" href="{% url 'applicant_account' %}">Edit User Information</a>
+                <br><br>
+                <a class="btn btn-primary btn-sm btn-block" href="{% url 'booking' applicant.id %}">Create New Form</a>
                 <br>
-                <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'booking' applicant.id %}">Create New Form</a>
             </div>
         </div>
     {% endif %}
-</div>
-<hr>
-<div class="row">
-    <div class="col">
+    <div class="col-md" style="text-align:center">
         <div class="card card-body">
+            <h5>Filter Booking</h5>
+            <hr>
             <form method="get">
-                {{ myFilter.form }}
-                <button class="btn btn-primary" type="submit">Search</button>
+                {{ myFilter.form|crispy }}
+                <br>
+                <button class="btn btn-dark" type="submit">Search</button>
             </form>
         </div>
     </div>
 </div>
 <hr>
-<div class="row">
-    <div class="col-md">
-        <div class="card card-body">
-            <table class="table table-sm", style="text-align:center">
-                <tr>
-                    <th>Laboratory (Code)</th>
-                    <th>Number of Users</th>
-                    <th>Date Created</th>
-                    <th>Work Actiity</th>
-                    <th>Hazard</th>
-                    <th>Which can cause/effect</th>
-                    <th>Existing Risk Control (if any)</th>
-                    <th>Likelihood</th>
-                    <th>Severity</th>
-                    <th>Risk</th>
-                    <th>Recommended Control Measures</th>
-                    <th>PIC (Due date/status)</th>
-                    <th>Booking Status</th>
-                    <th>Remarks</th>
+<div class="col-md" style="text-align:center">
+    <div class="card card-body">
+        <table class="table table-sm">
+            <tr>
+                <th>Laboratory (Code)</th>
+                <th>Number of Users</th>
+                <th>Date Created</th>
+                <th>Work Actiity</th>
+                <th>Hazard</th>
+                <th>Which can cause/effect</th>
+                <th>Existing Risk Control (if any)</th>
+                <th>Likelihood</th>
+                <th>Severity</th>
+                <th>Risk</th>
+                <th>Recommended Control Measures</th>
+                <th>PIC (Due date/status)</th>
+                <th>Booking Status</th>
+                <th>Remarks</th>
 
-                    {% if request.user.office %}
-                        <th>Approve</th>
-                        <th>Reject</th>
-                    {% endif %}
-                </tr>
-                {% for booking in booking %}
-                <tr>
-                    <td>{{booking.laboratory_code}}</td>
-                    <td>{{booking.number_of_users}}</td>
-                    <td>{{booking.date_created}}</td>
-                    <td>{{booking.HI_work_activity}}</td>
-                    <td>{{booking.HI_hazard}}</td>
-                    <td>{{booking.HI_source}}</td>
-                    <td>{{booking.RA_existing_risk_control}}</td>
-                    <td>{{booking.RA_likelihood}}</td>
-                    <td>{{booking.RA_severity}}</td>
-                    <td>{{booking.RA_risk}}</td>
-                    <td>{{booking.RC_countermeasure}}</td>
-                    <td>{{booking.RC_PIC}}</td>
-                    <td>{{booking.booking_status}}</td>
-                    <td>{{booking.remarks}}</td>
+                {% if request.user.office %}
+                    <th>Approve</th>
+                    <th>Reject</th>
+                {% endif %}
+            </tr>
+            {% for booking in booking %}
+            <tr>
+                <td>{{booking.laboratory_code}}</td>
+                <td>{{booking.number_of_users}}</td>
+                <td>{{booking.date_created}}</td>
+                <td>{{booking.HI_work_activity}}</td>
+                <td>{{booking.HI_hazard}}</td>
+                <td>{{booking.HI_source}}</td>
+                <td>{{booking.RA_existing_risk_control}}</td>
+                <td>{{booking.RA_likelihood}}</td>
+                <td>{{booking.RA_severity}}</td>
+                <td>{{booking.RA_risk}}</td>
+                <td>{{booking.RC_countermeasure}}</td>
+                <td>{{booking.RC_PIC}}</td>
+                <td>{{booking.booking_status}}</td>
+                <td>{{booking.remarks}}</td>
 
-                    {% if request.user.office %}
-                        <td><a class="btn btn-sm btn-info" href="{% url 'edit_booking' booking.id %}">Approve</a></td>                
-                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_booking' booking.id %}">Reject</a></td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
+                {% if request.user.office %}
+                    <td><a class="btn btn-sm btn-info" href="{% url 'edit_booking' booking.id %}">Approve</a></td>                
+                    <td><a class="btn btn-sm btn-danger" href="{% url 'delete_booking' booking.id %}">Reject</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
+
 {% endblock %}
