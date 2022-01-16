@@ -1,1 +1,1 @@
-web: gunicorn adeeb.wsgi
+web: gunicorn adeeb.wsgi --log-file -
