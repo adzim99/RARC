@@ -10,7 +10,7 @@
 </style>
 
 <hr>
-<div class="col-md" style="text-align:center">
+<div class="col-md">
     <div class="card card-body">
         <h5>Applicant</h5>
         <hr>
@@ -33,7 +33,7 @@
     </div>
 </div>
 <hr>
-<div class="row" style="text-align:center">
+<div class="row" style="text-align:center; width:100%; margin-left:auto; margin-right:auto;">
     {% if request.user.is_authenticated %}
         <div class="col-md">
             <div class="card card-body">
@@ -60,7 +60,7 @@
     </div>
 </div>
 <hr>
-<div class="col-md" style="text-align:center">
+<div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto;">
     <div class="card card-body">
         <table class="table table-sm">
             <tr>
@@ -79,16 +79,13 @@
                 <th>Booking Status</th>
                 <th>Remarks</th>
 
-                {% if request.user.office %}
-                    <th>Approve</th>
-                    <th>Reject</th>
-                {% endif %}
+                <th></th>
             </tr>
             {% for booking in booking %}
             <tr>
-                <td>{{booking.laboratory_code}}</td>
+                <td><a class="btn btn-sm btn-light" href="{% url 'approve_booking' booking.id %}">{{booking.laboratory_code}}</a></td>
                 <td>{{booking.number_of_users}}</td>
-                <td>{{booking.date_created}}</td>
+                <td>{{booking.date_created|date:"d/m/Y"}}</td>
                 <td>{{booking.HI_work_activity}}</td>
                 <td>{{booking.HI_hazard}}</td>
                 <td>{{booking.HI_source}}</td>
@@ -101,10 +98,7 @@
                 <td>{{booking.booking_status}}</td>
                 <td>{{booking.remarks}}</td>
 
-                {% if request.user.office %}
-                    <td><a class="btn btn-sm btn-info" href="{% url 'edit_booking' booking.id %}">Approve</a></td>                
-                    <td><a class="btn btn-sm btn-danger" href="{% url 'delete_booking' booking.id %}">Reject</a></td>
-                {% endif %}
+                <td><a class="btn btn-sm btn-danger" href="{% url 'reject_booking' booking.id %}">X</a></td>
             </tr>
             {% endfor %}
         </table>
