@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'django_filters',
     'crispy_forms',
+    'mathfilters',
     'whitenoise.runserver_nostatic',
     
     'functions',

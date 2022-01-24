@@ -5,7 +5,7 @@
 {% include 'status.html' %}
 
 <hr>
-<div class="row" style="text-align:center">
+<div class="row" style="text-align:center; width:100%; margin-left:auto; margin-right:auto;">
     <div class="col-md">
         <div class="card card-body">
             <h5>Applicant</h5>
@@ -42,7 +42,7 @@
     </div>
 </div>
 <hr>
-<div class="col-md" style="text-align:center">
+<div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto;">
     <h5>Laboratory Forms</h5>
     <div class="card card-body">
         <table class="table table-sm">
@@ -59,17 +59,16 @@
                 <th>Risk</th>
                 <th>Recommended Control Measures</th>
                 <th>PIC (Due date/status)</th>
+                <th>Booking Status</th>
 
-                {% if request.user.office %}
-                <th>Approve</th>
-                <th>Reject</th>
-                {% endif %}
+                <th></th>
+                <th></th>
             </tr>
             {% for booking in booking %}
             <tr>
                 <td>{{booking.laboratory_code}}</td>
                 <td>{{booking.number_of_users}}</td>
-                <td>{{booking.date_created}}</td>
+                <td>{{booking.date_created|date:"d/m/Y"}}</td>
                 <td>{{booking.HI_work_activity}}</td>
                 <td>{{booking.HI_hazard}}</td>
                 <td>{{booking.HI_source}}</td>
@@ -79,11 +78,10 @@
                 <td>{{booking.RA_risk}}</td>
                 <td>{{booking.RC_countermeasure}}</td>
                 <td>{{booking.RC_PIC}}</td>
+                <td>{{booking.booking_status}}</td>
 
-                {% if request.user.office %}
-                    <td><a class="btn btn-sm btn-primary" href="{% url 'approve_booking' booking.id %}">Approve</a></td>
-                <td><a class="btn btn-sm btn-danger" href="{% url 'reject_booking' booking.id %}">Reject</a></td>
-                {% endif %}
+                <td><a class="btn btn-sm btn-primary" href="{% url 'approve_booking' booking.id %}">Endorse</a></td>                
+                <td><a class="btn btn-sm btn-danger" href="{% url 'reject_booking' booking.id %}">X</a></td>
             </tr>
             {% endfor %}
         </table>

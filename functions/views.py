@@ -142,8 +142,7 @@ def booking(request, pk):
     return render(request, 'booking.html', context)
 
 @login_required(login_url='applicant_login')
-@rbac_office(allowed_roles=['office'])
-def approveBooking(request, pk):
+def editBooking(request, pk):
     booking = Booking.objects.get(id=pk)
     bookingset = BookingForm(instance=booking)
 
@@ -158,8 +157,7 @@ def approveBooking(request, pk):
     return render(request, 'booking.html', context)
 
 @login_required(login_url='applicant_login')
-@rbac_office(allowed_roles=['office'])
-def rejectBooking(request, pk):
+def deleteBooking(request, pk):
     booking = Booking.objects.get(id=pk)
 
     if request.method == "POST":
