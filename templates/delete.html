@@ -10,7 +10,7 @@
         <h5>Are you sure you want to delete "{{booking}}"?</h5>
         <br>
         <p>*This action will remove the form from the list. Are you sure?</p>
-        <form action="{% url 'reject_booking' booking.id %}" method="POST">
+        <form action="{% url 'delete_booking' booking.id %}" method="POST">
             {% csrf_token %}
             <hr>
             <a class="btn btn-warning" href="{% url 'home' %}">Cancel</a>

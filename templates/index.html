@@ -25,7 +25,7 @@
                 </tr>
                 {% for applicant in applicant %}
                     <tr>
-                        <td><a class="btn btn-sm btn-light" href="{% url 'applicant' applicant.id %}">{{ applicant.applicant_name }}</a></td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'applicant' applicant.id %}">{{ applicant.applicant_name }}</a></td>
                         <td>{{applicant.matric_no}}</td>
                         <td>{{applicant.student_tel_no}}</td>
                         <td>{{applicant.supervisor}}</td>
@@ -65,7 +65,6 @@
                 <th>Risk</th>
                 <th>Recommended Control Measures</th>
                 <th>PIC (Due date/status)</th>
-                <th>Booking Status</th>
 
                 <th></th>
                 <th></th>
@@ -83,11 +82,10 @@
                 <td>{{booking.RA_severity}}</td>
                 <td>{{booking.RA_risk}}</td>
                 <td>{{booking.RC_countermeasure}}</td>
-                <td>{{booking.RC_PIC}}</td>
-                <td>{{booking.booking_status}}</td>
+                <td>{{booking.RC_PIC}} / {{booking.booking_status}}</td>
 
-                <td><a class="btn btn-sm btn-primary" href="{% url 'approve_booking' booking.id %}">Endorse</a></td>                
-                <td><a class="btn btn-sm btn-danger" href="{% url 'reject_booking' booking.id %}">X</a></td>
+                <td><a class="btn btn-sm btn-primary" href="{% url 'endorse_booking' booking.id %}">Endorse</a></td>                
+                <td><a class="btn btn-sm btn-danger" href="{% url 'delete_booking' booking.id %}">X</a></td>
             </tr>
             {% endfor %}
         </table>

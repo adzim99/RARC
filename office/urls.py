@@ -15,8 +15,8 @@ urlpatterns = [
     path('office_account/', views.officeAccount, name="office_account"),
 
     path('booking/<str:pk>/', views.booking, name="booking"),
-    path('approve_booking/<str:pk>/', views.approveBooking, name="approve_booking"),
-    path('reject_booking/<str:pk>/', views.rejectBooking, name="reject_booking"),
+    path('endorse_booking/<str:pk>/', views.endorseBooking, name="endorse_booking"),
+    path('delete_booking/<str:pk>/', views.deleteBooking, name="delete_booking"),
 
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name="password_reset.html"), name="password_reset"),
     path('password_reset_sent/', auth_views.PasswordResetDoneView.as_view(template_name="password_reset_sent.html"), name="password_reset_done"),

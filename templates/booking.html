@@ -9,10 +9,12 @@
 <br>
 <div class="col-md" style="text-align:center">
     <div class="card card-body">
+        <h3 style="text-align: center;">Hazard Identification, Risk Assessment, and Risk Control (HIRARC) Information System for Laboratory Experiments</h3>
+        <hr>
         <form action="" method="POST">
             {% csrf_token %}
             {{ bookingset.management_form }}
-            {{ bookingset|crispy }}
+            {{bookingset|crispy}}
             <hr>
             <input type="submit" name="Submit" class="btn btn-outline-success">
         </form>

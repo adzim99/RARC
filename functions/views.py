@@ -55,7 +55,7 @@ def applicantLogin(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('applicant_login')
+    return redirect('home')
 
 @login_required(login_url='applicant_login')
 @rbac_office(allowed_roles=['office'])
@@ -115,9 +115,10 @@ def applicantAccount(request):
     form = ApplicantForm(instance=applicant)
 
     if request.method == 'POST':
-        form = ApplicantForm(request.POST, request.FILES, instance=applicant)
-        if form.is_valid:
+        form = ApplicantForm(request.POST, instance=applicant)
+        if form.is_valid():
             form.save()
+            return redirect('home')
 
     context = {'form':form}
 
@@ -166,7 +167,7 @@ def deleteBooking(request, pk):
 
     context = {'booking':booking}
 
-    return render(request, 'reject.html', context)
+    return render(request, 'delete.html', context)
 
 @login_required(login_url='applicant_login')
 @rbac_applicant(allowed_roles=['applicant'])

@@ -13,31 +13,14 @@ class Applicant(models.Model):
     supervisor = models.CharField(null=True, max_length=200)
     staff_no = models.IntegerField(null=True)
     programme = models.CharField(null=True, max_length=100)
-    profile_pic = models.ImageField(default="default1.png", null=True, blank=True)
     
     def __str__(self):
-        return str(self.applicant_name)
+        return str(self.matric_no)
 
 class Booking(models.Model):
-    L = (
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4'),
-        (5, '5'),
-    )
-    S = (
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4'),
-        (5, '5'),
-    )
-    STATS = (
-        ('Pending', 'Pending'),
-        ('Approved', 'Approved'),
-        ('Rejected', 'Rejected'),
-        )
+    L = ((1, '1'),(2, '2'),(3, '3'),(4, '4'),(5, '5'),)
+    S = ((1, '1'),(2, '2'),(3, '3'),(4, '4'),(5, '5'),)
+    STATS = (('Pending', 'Pending'),('Approved', 'Approved'),('Rejected', 'Rejected'),)
 
     applicant = models.ForeignKey(Applicant, null=True, on_delete=models.SET_NULL)
 
@@ -64,13 +47,7 @@ class Booking(models.Model):
         return str(self.HI_work_activity)
 
 class ApplicantFeedback(models.Model):
-    RATE = (
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4'),
-        (5, '5'),
-        )
+    RATE = ((1, '1'),(2, '2'),(3, '3'),(4, '4'),(5, '5'),)
     rating = models.IntegerField(null=True, choices=RATE)
     feedback = models.CharField(null=True, max_length=200)
 

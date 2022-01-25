@@ -16,6 +16,7 @@ class BookingForm(ModelForm):
     class Meta:
         model = Booking
         fields = '__all__'
+        exclude = ['applicant', 'delete', 'booking_status', 'remarks']
 
 class CreateUserForm(UserCreationForm):
     class Meta:

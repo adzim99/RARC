@@ -95,9 +95,10 @@ def officeAccount(request):
     form = OfficeForm(instance=office)
 
     if request.method == 'POST':
-        form = OfficeForm(request.POST, request.FILES, instance=office)
-        if form.is_valid:
+        form = OfficeForm(request.POST, instance=office)
+        if form.is_valid():
             form.save()
+            return redirect('home')
 
     context = {'form':form}
 
@@ -123,7 +124,7 @@ def booking(request, pk):
 
 @login_required(login_url='office_login')
 @allowed_users(allowed_roles=['office'])
-def approveBooking(request, pk):
+def endorseBooking(request, pk):
     booking = Booking.objects.get(id=pk)
     bookingset = BookingForm(instance=booking)
 
@@ -139,7 +140,7 @@ def approveBooking(request, pk):
 
 @login_required(login_url='office_login')
 @allowed_users(allowed_roles=['office'])
-def rejectBooking(request, pk):
+def deleteBooking(request, pk):
     booking = Booking.objects.get(id=pk)
 
     if request.method == "POST":
@@ -148,7 +149,7 @@ def rejectBooking(request, pk):
 
     context = {'booking':booking}
 
-    return render(request, 'reject.html', context)
+    return render(request, 'delete.html', context)
 
 @login_required(login_url='office_login')
 @allowed_users(allowed_roles=['office'])

@@ -10,6 +10,7 @@
         <div class="card card-body">
             <h5>Applicant</h5>
             <hr>
+            <br><br>
             <table class="table table-sm">
                 <tr>
                     <th>Applicant Name</th>
@@ -26,7 +27,7 @@
                     <td>{{applicant.programme}}</td>
                 </tr>
             </table>
-            <br><br><br><br>
+            <br><br>
         </div>
     </div>
     <div class="col-md-3">
@@ -80,8 +81,8 @@
                 <td>{{booking.RC_PIC}}</td>
                 <td>{{booking.booking_status}}</td>
 
-                <td><a class="btn btn-sm btn-primary" href="{% url 'approve_booking' booking.id %}">Endorse</a></td>                
-                <td><a class="btn btn-sm btn-danger" href="{% url 'reject_booking' booking.id %}">X</a></td>
+                <td><a class="btn btn-sm btn-primary" href="{% url 'endorse_booking' booking.id %}">Endorse</a></td>                
+                <td><a class="btn btn-sm btn-danger" href="{% url 'delete_booking' booking.id %}">X</a></td>
             </tr>
             {% endfor %}
         </table>
