@@ -7,13 +7,13 @@
 
 <div class="col-md" style="text-align:center;">
     <div class="card card-body">
-        <h3 style="text-align: center;">Account Settings</h3>
+        <h3 style="text-align: center;">Office Account</h3>
         <hr>
         <form method="POST" action="" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
             <hr>
-            <input class="btn btn-primary" type="submit" value="Update Information">
+            <input class="btn btn-warning" type="submit" value="Update Information">
         </form>
     </div>
 </div>

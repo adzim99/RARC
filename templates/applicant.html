@@ -13,18 +13,18 @@
             <br><br>
             <table class="table table-sm">
                 <tr>
-                    <th>Applicant Name</th>
                     <th>Matric No.</th>
+                    <th>Applicant Name</th>
                     <th>Student's Tel. No.</th>
                     <th>Supervisor</th>
                     <th>Programme/Faculty</th>
                 </tr>
                 <tr>
-                    <td>{{applicant.applicant_name}}</td>
                     <td>{{applicant.matric_no}}</td>
+                    <td>{{applicant.applicant_name|title}}</td>
                     <td>{{applicant.student_tel_no}}</td>
-                    <td>{{applicant.supervisor}}</td>
-                    <td>{{applicant.programme}}</td>
+                    <td>{{applicant.supervisor|title}}</td>
+                    <td>{{applicant.programme|title}}</td>
                 </tr>
             </table>
             <br><br>
@@ -45,23 +45,22 @@
 <hr>
 <div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto;">
     <h5>Laboratory Forms</h5>
-    <div class="card card-body">
+    <div class="card card-body table-responsive">
         <table class="table table-sm">
             <tr>
-                <th>Laboratory (Code)</th>
+                <th>Laboratory Code</th>
                 <th>Number of Users</th>
                 <th>Date Created</th>
-                <th>Work Actiity</th>
-                <th>Hazard</th>
-                <th>Which can cause/effect</th>
-                <th>Existing Risk Control (if any)</th>
-                <th>Likelihood</th>
-                <th>Severity</th>
-                <th>Risk</th>
-                <th>Recommended Control Measures</th>
-                <th>PIC (Due date/status)</th>
+                <th>Work Activity</th>
+                <th>Known Hazard</th>
+                <th>Which can Cause/Effect</th>
+                <th>Risk Control</th>
+                <th>Likelihood (L)</th>
+                <th>Severity (S)</th>
+                <th>Risk (L×S)</th>
+                <th>Recommended Countermeasure</th>
+                <th>PIC Name</th>
                 <th>Booking Status</th>
-
                 <th></th>
                 <th></th>
             </tr>
@@ -70,17 +69,16 @@
                 <td>{{booking.laboratory_code}}</td>
                 <td>{{booking.number_of_users}}</td>
                 <td>{{booking.date_created|date:"d/m/Y"}}</td>
-                <td>{{booking.HI_work_activity}}</td>
-                <td>{{booking.HI_hazard}}</td>
-                <td>{{booking.HI_source}}</td>
-                <td>{{booking.RA_existing_risk_control}}</td>
+                <td>{{booking.HI_work_activity|title}}</td>
+                <td>{{booking.HI_hazard|title}}</td>
+                <td>{{booking.HI_source|title}}</td>
+                <td>{{booking.RA_existing_risk_control|title}}</td>
                 <td>{{booking.RA_likelihood}}</td>
                 <td>{{booking.RA_severity}}</td>
                 <td>{{booking.RA_risk}}</td>
                 <td>{{booking.RC_countermeasure}}</td>
-                <td>{{booking.RC_PIC}}</td>
+                <td>{{booking.RC_PIC|title}}</td>
                 <td>{{booking.booking_status}}</td>
-
                 <td><a class="btn btn-sm btn-primary" href="{% url 'endorse_booking' booking.id %}">Endorse</a></td>                
                 <td><a class="btn btn-sm btn-danger" href="{% url 'delete_booking' booking.id %}">X</a></td>
             </tr>

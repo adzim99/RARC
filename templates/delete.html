@@ -13,8 +13,8 @@
         <form action="{% url 'delete_booking' booking.id %}" method="POST">
             {% csrf_token %}
             <hr>
-            <a class="btn btn-warning" href="{% url 'home' %}">Cancel</a>
-            <input class="btn btn-outline-secondary" type="submit" name="Confirm">
+            <a class="btn btn-success" href="{% url 'home' %}">Cancel</a>
+            <input class="btn btn-outline-dark" type="submit" name="Confirm">
         </form>
     </div>
 </div>

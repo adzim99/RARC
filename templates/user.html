@@ -10,24 +10,24 @@
 </style>
 
 <hr>
-<div class="col-md">
+<div class="col-md" style="text-align: center;">
     <div class="card card-body">
         <h5>Applicant</h5>
         <hr>
         <table class="table table-sm">
             <tr>
-                <th>Applicant Name</th>
                 <th>Matric No.</th>
+                <th>Applicant Name</th>
                 <th>Student's Tel. No.</th>
                 <th>Supervisor</th>
                 <th>Programme/Faculty</th>
             </tr>
             <tr>
-                <td>{{applicant.applicant_name}}</td>
                 <td>{{applicant.matric_no}}</td>
+                <td>{{applicant.applicant_name|title}}</td>
                 <td>{{applicant.student_tel_no}}</td>
-                <td>{{applicant.supervisor}}</td>
-                <td>{{applicant.programme}}</td>
+                <td>{{applicant.supervisor|title}}</td>
+                <td>{{applicant.programme|title}}</td>
             </tr>
         </table>
     </div>
@@ -40,7 +40,7 @@
                 <h5>Action</h5>
                 <hr>
                 <br><br>
-                <a class="btn btn-outline-warning btn-sm btn-block" href="{% url 'applicant_account' %}">Edit User Information</a>
+                <a class="btn btn-outline-dark btn-sm btn-block" href="{% url 'applicant_account' %}">Edit User Information</a>
                 <br><br>
                 <a class="btn btn-primary btn-sm btn-block" href="{% url 'booking' applicant.id %}">Create New Form</a>
                 <br>
@@ -54,36 +54,36 @@
             <form method="get">
                 {{ myFilter.form|crispy }}
                 <br>
-                <button class="btn btn-dark" type="submit">Search</button>
+                <button class="btn btn-info" type="submit">Search</button>
             </form>
         </div>
     </div>
 </div>
 <hr>
 <div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto;">
-    <div class="card card-body">
+    <div class="card card-body table-responsive">
         <table class="table table-sm">
             <tr>
-                <th>Laboratory (Code)</th>
+                <th>Laboratory Code</th>
                 <th>Number of Users</th>
                 <th>Date Created</th>
-                <th>Work Actiity</th>
-                <th>Hazard</th>
-                <th>Which can cause/effect</th>
-                <th>Existing Risk Control (if any)</th>
-                <th>Likelihood</th>
-                <th>Severity</th>
-                <th>Risk</th>
-                <th>Recommended Control Measures</th>
-                <th>PIC (Due date/status)</th>
+                <th>Work Activity</th>
+                <th>Known Hazard</th>
+                <th>Which can Cause/Effect</th>
+                <th>Risk Control</th>
+                <th>Likelihood (L)</th>
+                <th>Severity (S)</th>
+                <th>Risk (L×S)</th>
+                <th>Recommended Countermeasure</th>
+                <th>PIC Name</th>
                 <th>Booking Status</th>
-                <th>Remarks</th>
-
+                <th>Officer Remarks</th>
+                <th></th>
                 <th></th>
             </tr>
             {% for booking in booking %}
             <tr>
-                <td><a class="btn btn-sm btn-info" href="{% url 'edit_booking' booking.id %}">{{booking.laboratory_code}}</a></td>
+                <td>{{booking.laboratory_code|upper}}</td>
                 <td>{{booking.number_of_users}}</td>
                 <td>{{booking.date_created|date:"d/m/Y"}}</td>
                 <td>{{booking.HI_work_activity|title}}</td>
@@ -97,7 +97,7 @@
                 <td>{{booking.RC_PIC|title}}</td>
                 <td>{{booking.booking_status}}</td>
                 <td>{{booking.remarks}}</td>
-
+                <td><a class="btn btn-sm btn-warning" href="{% url 'edit_booking' booking.id %}">Edit</a></td>
                 <td><a class="btn btn-sm btn-danger" href="{% url 'delete_booking' booking.id %}">X</a></td>
             </tr>
             {% endfor %}
