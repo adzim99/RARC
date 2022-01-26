@@ -9,8 +9,8 @@
 </style>
 
 <hr>
-<div class="row" style="text-align:center; width:100%; margin-left:auto; margin-right:auto;">
-    <div class="col-md" style="text-align: center;">
+<div class="row" style="text-align:center; width:100%; margin-left:auto; margin-right:auto; align-items: center; justify-content: center;">
+    <div class="col mb-1">
         <h5>Applicant</h5>
         <div class="card card-body table-responsive">
             <table class="table table-sm">
@@ -33,8 +33,8 @@
     </div>
     {% if request.user.is_authenticated %}
         <div class="col-md-3">
-            <h5>Action</h5>
             <div class="card card-body">
+                <h5>Action</h5>
                 <a class="btn btn-outline-dark btn-sm btn-block" href="{% url 'applicant_account' %}">Edit User Information</a>
                 <br>
                 <a class="btn btn-primary btn-sm btn-block" href="{% url 'booking' applicant.id %}">Create New Form</a>
