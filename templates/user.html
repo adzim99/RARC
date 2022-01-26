@@ -2,7 +2,6 @@
 
 {% block content %}
 {% load crispy_forms_tags %}
-{% include 'status.html' %}
 
 <style>
     .appl{text-decoration: none;}
@@ -10,57 +9,44 @@
 </style>
 
 <hr>
-<div class="col-md" style="text-align: center;">
-    <div class="card card-body">
-        <h5>Applicant</h5>
-        <hr>
-        <table class="table table-sm">
-            <tr>
-                <th>Matric No.</th>
-                <th>Applicant Name</th>
-                <th>Student's Tel. No.</th>
-                <th>Supervisor</th>
-                <th>Programme/Faculty</th>
-            </tr>
-            <tr>
-                <td>{{applicant.matric_no}}</td>
-                <td>{{applicant.applicant_name|title}}</td>
-                <td>{{applicant.student_tel_no}}</td>
-                <td>{{applicant.supervisor|title}}</td>
-                <td>{{applicant.programme|title}}</td>
-            </tr>
-        </table>
-    </div>
-</div>
-<hr>
 <div class="row" style="text-align:center; width:100%; margin-left:auto; margin-right:auto;">
+    <div class="col-md" style="text-align: center;">
+        <h5>Applicant</h5>
+        <div class="card card-body table-responsive">
+            <table class="table table-sm">
+                <tr>
+                    <th>Matric No.</th>
+                    <th>Applicant Name</th>
+                    <th>Student's Tel. No.</th>
+                    <th>Supervisor Name</th>
+                    <th>Programme/Faculty</th>
+                </tr>
+                <tr>
+                    <td>{{applicant.matric_no}}</td>
+                    <td>{{applicant.applicant_name|title}}</td>
+                    <td>{{applicant.student_tel_no}}</td>
+                    <td>{{applicant.supervisor|title}}</td>
+                    <td>{{applicant.programme|title}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
     {% if request.user.is_authenticated %}
-        <div class="col-md">
+        <div class="col-md-3">
+            <h5>Action</h5>
             <div class="card card-body">
-                <h5>Action</h5>
-                <hr>
-                <br><br>
                 <a class="btn btn-outline-dark btn-sm btn-block" href="{% url 'applicant_account' %}">Edit User Information</a>
-                <br><br>
-                <a class="btn btn-primary btn-sm btn-block" href="{% url 'booking' applicant.id %}">Create New Form</a>
                 <br>
+                <a class="btn btn-primary btn-sm btn-block" href="{% url 'booking' applicant.id %}">Create New Form</a>
             </div>
         </div>
     {% endif %}
-    <div class="col-md" style="text-align:center">
-        <div class="card card-body">
-            <h5>Filter Booking</h5>
-            <hr>
-            <form method="get">
-                {{ myFilter.form|crispy }}
-                <br>
-                <button class="btn btn-info" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
 </div>
 <hr>
-<div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto;">
+{% include 'status.html' %}
+<hr>
+<div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto; align-items: center; justify-content: center;">
+    <h5>Laboratory Forms</h5>
     <div class="card card-body table-responsive">
         <table class="table table-sm">
             <tr>

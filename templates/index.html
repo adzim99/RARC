@@ -2,53 +2,40 @@
 
 {% block content %}
 {% load crispy_forms_tags %}
-{% include 'status.html' %}
 
 <style>
     .appl{text-decoration: none;}
     h5 {text-align: center;}
 </style>
 
-<hr>
-<div class="row" style="text-align:center; width:100%; margin-left:auto; margin-right:auto;">
-    <div class="col-md">
-        <div class="card card-body">
-            <h5>Users</h5>
-            <hr>
-            <table class="table table-sm">
+<br>
+<div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto; align-items: center; justify-content: center;">
+    <h5>Users</h5>
+    <div class="card card-body table-responsive">
+        <table class="table table-sm">
+            <tr>
+                <th>Matric No.</th>
+                <th>Applicant Name</th>
+                <th>Student's Tel. No.</th>
+                <th>Supervisor Name</th>
+                <th>Programme/Faculty</th>
+            </tr>
+            {% for applicant in applicant %}
                 <tr>
-                    <th>Matric No.</th>
-                    <th>Applicant Name</th>
-                    <th>Student's Tel. No.</th>
-                    <th>Supervisor</th>
-                    <th>Programme/Faculty</th>
+                    <td><a class="btn btn-sm btn-outline-info" href="{% url 'applicant' applicant.id %}">{{applicant.matric_no}}</a></td>
+                    <td>{{applicant.applicant_name|title}}</td>
+                    <td>{{applicant.student_tel_no}}</td>
+                    <td>{{applicant.supervisor|title}}</td>
+                    <td>{{applicant.programme|title}}</td>
                 </tr>
-                {% for applicant in applicant %}
-                    <tr>
-                        <td><a class="btn btn-sm btn-outline-info" href="{% url 'applicant' applicant.id %}">{{applicant.matric_no}}</a></td>
-                        <td>{{applicant.applicant_name|title}}</td>
-                        <td>{{applicant.student_tel_no}}</td>
-                        <td>{{applicant.supervisor|title}}</td>
-                        <td>{{applicant.programme|title}}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card card-body">
-            <h5>Filter Booking</h5>
-            <hr>
-            <form method="get">
-                {{ myFilter.form|crispy }}
-                <br>
-                <button class="btn btn-dark" type="submit">Search</button>
-            </form>
-        </div>
+            {% endfor %}
+        </table>
     </div>
 </div>
 <hr>
-<div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto;">
+{% include 'status.html' %}
+<hr>
+<div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto; align-items: center; justify-content: center;">
     <h5>Laboratory Forms</h5>
     <div class="card card-body table-responsive">
         <table class="table table-sm">

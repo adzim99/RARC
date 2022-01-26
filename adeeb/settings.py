@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -152,4 +153,13 @@ EMAIL_HOST_USER = 'adzim.py@gmail.com'
 EMAIL_HOST_PASSWORD = 'UwPUTa?XQmZ,?D$XGFhxn%8$D~y=CmP$n'
 
 # Configure Django App for Heroku.
+
 django_heroku.settings(locals())
+
+# SESSION EXPIRE
+
+SESSION_COOKIE_AGE = 60
+SESSION_EXPIRE_SECONDS = 60
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_TIMEOUT_REDIRECT = 'logout/'
