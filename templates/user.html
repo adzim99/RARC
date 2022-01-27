@@ -13,7 +13,7 @@
     <div class="col mb-1">
         <h5>Applicant</h5>
         <div class="card card-body table-responsive">
-            <table class="table table-sm">
+            <table class="table align-middle table-sm table-striped table-bordered">
                 <tr>
                     <th>Matric No.</th>
                     <th>Applicant Name</th>
@@ -32,10 +32,10 @@
         </div>
     </div>
     {% if request.user.is_authenticated %}
-        <div class="col-md-3">
+        <div class="col-lg-3">
             <div class="card card-body">
                 <h5>Action</h5>
-                <a class="btn btn-outline-dark btn-sm btn-block" href="{% url 'applicant_account' %}">Edit User Information</a>
+                <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'applicant_account' %}">Edit User Information</a>
                 <br>
                 <a class="btn btn-primary btn-sm btn-block" href="{% url 'booking' applicant.id %}">Create New Form</a>
             </div>
@@ -45,14 +45,14 @@
 <hr>
 {% include 'status.html' %}
 <hr>
-<div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto; align-items: center; justify-content: center;">
+<div class="col" style="text-align:center; width:100%; margin-left:auto; margin-right:auto; align-items: center; justify-content: center;">
     <h5>Laboratory Forms</h5>
     <div class="card card-body table-responsive">
-        <table class="table table-sm">
+        <table class="table align-middle table-sm table-striped table-bordered">
             <tr>
+                <th>Date Created</th>
                 <th>Laboratory Code</th>
                 <th>Number of Users</th>
-                <th>Date Created</th>
                 <th>Work Activity</th>
                 <th>Known Hazard</th>
                 <th>Which can Cause/Effect</th>
@@ -64,14 +64,14 @@
                 <th>PIC Name</th>
                 <th>Booking Status</th>
                 <th>Officer Remarks</th>
-                <th></th>
-                <th></th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             {% for booking in booking %}
             <tr>
+                <td>{{booking.date_created|date:"d/m/Y"}}</td>
                 <td>{{booking.laboratory_code|upper}}</td>
                 <td>{{booking.number_of_users}}</td>
-                <td>{{booking.date_created|date:"d/m/Y"}}</td>
                 <td>{{booking.HI_work_activity|title}}</td>
                 <td>{{booking.HI_hazard|title}}</td>
                 <td>{{booking.HI_source|title}}</td>

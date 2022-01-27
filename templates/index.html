@@ -12,7 +12,7 @@
 <div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto; align-items: center; justify-content: center;">
     <h5>Users</h5>
     <div class="card card-body table-responsive">
-        <table class="table table-sm">
+        <table class="table align-middle table-sm table-striped table-bordered">
             <tr>
                 <th>Matric No.</th>
                 <th>Applicant Name</th>
@@ -38,11 +38,11 @@
 <div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto; align-items: center; justify-content: center;">
     <h5>Laboratory Forms</h5>
     <div class="card card-body table-responsive">
-        <table class="table table-sm">
+        <table class="table align-middle table-sm table-striped table-bordered">
             <tr>
+                <th>Date Created</th>
                 <th>Laboratory Code</th>
                 <th>Number of Users</th>
-                <th>Date Created</th>
                 <th>Work Activity</th>
                 <th>Known Hazard</th>
                 <th>Which can Cause/Effect</th>
@@ -53,14 +53,14 @@
                 <th>Recommended Countermeasure</th>
                 <th>PIC Name</th>
                 <th>Booking Status</th>
-                <th></th>
-                <th></th>
+                <th>Approve/ Reject</th>
+                <th>Delete</th>
             </tr>
             {% for booking in booking %}
             <tr>
+                <td>{{booking.date_created|date:"d/m/Y"}}</td>
                 <td>{{booking.laboratory_code|upper}}</td>
                 <td>{{booking.number_of_users}}</td>
-                <td>{{booking.date_created|date:"d/m/Y"}}</td>
                 <td>{{booking.HI_work_activity|title}}</td>
                 <td>{{booking.HI_hazard|title}}</td>
                 <td>{{booking.HI_source|title}}</td>
