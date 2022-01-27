@@ -8,148 +8,157 @@
 {{ form.media }}
 
 <br>
-<div class="col-md" style="text-align:center; width:100%; margin-left:auto; margin-right:auto; align-items: center; justify-content: center;">
-    <div class="card card-body">
-        <h3 style="text-align: center;">Hazard Identification, Risk Assessment, and Risk Control (HIRARC) Information System for Laboratory Experiments</h3>
-        <hr>
-        <form action="" method="POST">
-            {% csrf_token %}
+<div class="row" style="text-align:center; width:100%; margin-left:auto; margin-right:auto; align-items: center; justify-content: center;">
+    <h3 style="text-align: center;">Hazard Identification, Risk Assessment, and Risk Control (HIRARC) Information System for Laboratory Experiments</h3>
+    <div class="col-lg-5 mb-1">
+        <div class="card card-body">
+            <figure class="figure">
+                <img src="{% static 'img/matrix.png' %}" class="figure-img img-fluid rounded" alt="matrix" width="100%" height="100%">
+                <img src="{% static 'img/action.png' %}" class="figure-img img-fluid rounded" alt="action" width="100%" height="100%">
+            </figure>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card card-body">
+            <form action="" method="POST">
+                {% csrf_token %}
 
-            {% if request.user.applicant %}
-                <h5>Laboratory Booking Form</h5>
-                <div class="mb-1">
-                    <label class="form-label">Applicant</label><br>
-                    {{bookingset.applicant}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Laboratory Code</label><br>
-                    {{bookingset.laboratory_code}}
-                </div>
+                {% if request.user.applicant %}
+                    <h5>Laboratory Booking Form</h5>
                     <div class="mb-1">
-                    <label class="form-label">Number of Users</label><br>
-                    {{bookingset.number_of_users}}
-                </div>
-                <hr>
-
-                <h5>Hazard identification</h5>
-                <div class="mb-1">
-                    <label class="form-label">Work Activity</label><br>
-                    {{bookingset.HI_work_activity}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Known Hazard</label><br>
-                    {{bookingset.HI_hazard}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Which Can Cause/Effect</label><br>
-                    {{bookingset.HI_source}}
-                </div>
-                <hr>
-
-                <h5>Risk Assessment</h5>
-                <div class="mb-1">
-                    <label class="form-label">Risk Control</label><br>
-                    {{bookingset.RA_existing_risk_control}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Likelihood (L)</label><br>
-                    {{bookingset.RA_likelihood}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Severity (S)</label><br>
-                    {{bookingset.RA_severity}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Risk (L×S)</label><br>
-                    {{bookingset.RA_risk}}
-                </div>
-                <hr>
-
-                <h5>Risk Control</h5>
-                <div class="mb-1">
-                    <label class="form-label">Recommended Countermeasure</label><br>
-                    {{bookingset.RC_countermeasure}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">PIC Name</label><br>
-                    {{bookingset.RC_PIC}}
-                </div>
-
-            {% else %}
-                <h5>Laboratory Booking Form</h5>
-                <div class="mb-1">
-                    <label class="form-label">Applicant</label><br>
-                    {{bookingset.applicant}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Laboratory Code</label><br>
-                    {{bookingset.laboratory_code}}
-                </div>
+                        <label class="form-label">Applicant</label><br>
+                        {{bookingset.applicant}}
+                    </div>
                     <div class="mb-1">
-                    <label class="form-label">Number of Users</label><br>
-                    {{bookingset.number_of_users}}
-                </div>
+                        <label class="form-label">Laboratory Code</label><br>
+                        {{bookingset.laboratory_code}}
+                    </div>
+                        <div class="mb-1">
+                        <label class="form-label">Number of Users</label><br>
+                        {{bookingset.number_of_users}}
+                    </div>
+                    <hr>
+
+                    <h5>Hazard Identification</h5>
+                    <div class="mb-1">
+                        <label class="form-label">Work Activity</label><br>
+                        {{bookingset.HI_work_activity}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Known Hazard</label><br>
+                        {{bookingset.HI_hazard}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Which Can Cause/Effect</label><br>
+                        {{bookingset.HI_source}}
+                    </div>
+                    <hr>
+
+                    <h5>Risk Assessment</h5>
+                    <div class="mb-1">
+                        <label class="form-label">Risk Control</label><br>
+                        {{bookingset.RA_existing_risk_control}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Likelihood (L)</label><br>
+                        {{bookingset.RA_likelihood}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Severity (S)</label><br>
+                        {{bookingset.RA_severity}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Risk (L×S)</label><br>
+                        {{bookingset.RA_risk}}
+                    </div>
+                    <hr>
+
+                    <h5>Risk Control</h5>
+                    <div class="mb-1">
+                        <label class="form-label">Recommended Countermeasure</label><br>
+                        {{bookingset.RC_countermeasure}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">PIC Name</label><br>
+                        {{bookingset.RC_PIC}}
+                    </div>
+
+                {% else %}
+                    <h5>Laboratory Booking Form</h5>
+                    <div class="mb-1">
+                        <label class="form-label">Applicant</label><br>
+                        {{bookingset.applicant}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Laboratory Code</label><br>
+                        {{bookingset.laboratory_code}}
+                    </div>
+                        <div class="mb-1">
+                        <label class="form-label">Number of Users</label><br>
+                        {{bookingset.number_of_users}}
+                    </div>
+                    <hr>
+
+                    <h5>Hazard Identification</h5>
+                    <div class="mb-1">
+                        <label class="form-label">Work Activity</label><br>
+                        {{bookingset.HI_work_activity}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Known Hazard</label><br>
+                        {{bookingset.HI_hazard}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Which Can Cause/Effect</label><br>
+                        {{bookingset.HI_source}}
+                    </div>
+                    <hr>
+
+                    <h5>Risk Assessment</h5>
+                    <div class="mb-1">
+                        <label class="form-label">Risk Control</label><br>
+                        {{bookingset.RA_existing_risk_control}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Likelihood (L)</label><br>
+                        {{bookingset.RA_likelihood}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Severity (S)</label><br>
+                        {{bookingset.RA_severity}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Risk (L×S)</label><br>
+                        {{bookingset.RA_risk}}
+                    </div>
+                    <hr>
+
+                    <h5>Risk Control</h5>
+                    <div class="mb-1">
+                        <label class="form-label">Recommended Countermeasure</label><br>
+                        {{bookingset.RC_countermeasure}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">PIC Name</label><br>
+                        {{bookingset.RC_PIC}}
+                    </div>
+                    <hr>
+
+                    <h5>Validate Booking Form</h5>
+                    <div class="mb-1">
+                        <label class="form-label">Status</label><br>
+                        {{bookingset.booking_status}}
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Remarks</label><br>
+                        {{bookingset.remarks}}
+                    </div>
+                {% endif %}
+
                 <hr>
-
-                <h5>Hazard identification</h5>
-                <div class="mb-1">
-                    <label class="form-label">Work Activity</label><br>
-                    {{bookingset.HI_work_activity}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Known Hazard</label><br>
-                    {{bookingset.HI_hazard}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Which Can Cause/Effect</label><br>
-                    {{bookingset.HI_source}}
-                </div>
-                <hr>
-
-                <h5>Risk Assessment</h5>
-                <div class="mb-1">
-                    <label class="form-label">Risk Control</label><br>
-                    {{bookingset.RA_existing_risk_control}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Likelihood (L)</label><br>
-                    {{bookingset.RA_likelihood}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Severity (S)</label><br>
-                    {{bookingset.RA_severity}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Risk (L×S)</label><br>
-                    {{bookingset.RA_risk}}
-                </div>
-                <hr>
-
-                <h5>Risk Control</h5>
-                <div class="mb-1">
-                    <label class="form-label">Recommended Countermeasure</label><br>
-                    {{bookingset.RC_countermeasure}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">PIC Name</label><br>
-                    {{bookingset.RC_PIC}}
-                </div>
-                <hr>
-
-                <h5>Validate Booking Form</h5>
-                <div class="mb-1">
-                    <label class="form-label">Status</label><br>
-                    {{bookingset.booking_status}}
-                </div>
-                <div class="mb-1">
-                    <label class="form-label">Remarks</label><br>
-                    {{bookingset.remarks}}
-                </div>
-            {% endif %}
-
-            <hr>
-            <input type="submit" name="Submit" class="btn btn-outline-success">
-        </form>
+                <input type="submit" name="Submit" class="btn btn-outline-success">
+            </form>
+        </div>
     </div>
 </div>
 
