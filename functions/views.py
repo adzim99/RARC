@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, response
-from django.forms import inlineformset_factory
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -126,14 +125,11 @@ def applicantAccount(request):
 
 @login_required(login_url='applicant_login')
 def booking(request, pk):
-    BookingFormSet = inlineformset_factory(Applicant, Booking, fields=('laboratory_code','number_of_users','HI_work_activity','HI_hazard','HI_source','RA_existing_risk_control','RA_likelihood','RA_severity','RA_risk','RC_countermeasure','RC_PIC'), extra=1)
     applicant = Applicant.objects.get(id=pk)
-    bookingset = BookingFormSet(queryset=Booking.objects.none(), instance=applicant)
-#    form = BookingForm(initial={'applicant':applicant})
+    bookingset = BookingForm(initial={'applicant':applicant})
 
     if request.method == 'POST':
-#        form = BookingForm(request.POST)
-        bookingset = BookingFormSet(request.POST, instance=applicant)
+        bookingset = BookingForm(request.POST)
         if bookingset.is_valid():
             bookingset.save()
             return redirect('/')

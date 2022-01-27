@@ -6,18 +6,23 @@ from django import forms
 
 from .models import *
 
+import calculation
+
 class ApplicantForm(ModelForm):
     class Meta:
         model = Applicant
         fields = '__all__'
         exclude = ['user']
 
-class BookingForm(ModelForm):
+class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = '__all__'
-        exclude = ['applicant', 'delete', 'booking_status', 'remarks']
+        exclude = ['booking_status', 'remarks']
 
+        widgets = {
+            'RA_risk':calculation.FormulaInput('RA_likelihood*RA_severity')
+        }
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
